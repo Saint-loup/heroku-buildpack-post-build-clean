@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+echo "Inside the compile script"
+
 BUILD_DIR=$1
-CLEAN_FILES=.slug-post-clean
+CLEAN_FILES=".slug-post-clean"
+
+echo "Build dir $BUILD_DIR"
 
 if [[ ! -n "${BUILD_DIR}" ]]; then
   echo "No build directory specified - exiting"
@@ -10,10 +14,14 @@ fi
 
 cd ${BUILD_DIR}
 
+echo "Inside build dir"
+
 if [[ ! -f "${CLEAN_FILES}" ]]; then
   echo "Could not find .slug-post-clean file - exiting"
   exit 1
 fi
+
+echo "CLEAN FILES EXISTS"
 
 function remove_file_or_dir {
   if [[ -f "$1" ]]; then
@@ -30,6 +38,7 @@ function remove_file_or_dir {
 export -f remove_file_or_dir
 
 while read file; do
+  echo "INSIDE LOOP $file"
   [[ ! -n "${file}" ]] && continue
 
   if [[ -f "${file}" || -d "${file}" ]]; then
