@@ -15,6 +15,7 @@ fi
 cd ${BUILD_DIR}
 
 echo "Inside build dir"
+ls -d1 **/puppeteer
 
 if [[ ! -f "${CLEAN_FILES}" ]]; then
   echo "Could not find .slug-post-clean file - exiting"
